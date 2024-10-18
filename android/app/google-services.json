@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1093188499260",
+    "project_id": "judge-app-f80ea",
+    "storage_bucket": "judge-app-f80ea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1093188499260:android:756fcd403b78db3ec2d039",
+        "android_client_info": {
+          "package_name": "com.example.judge_admin_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFVM7am8quf2lwci9syasI5OLxQrjPK7Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1093188499260:android:4f1c132292753e19c2d039",
+        "android_client_info": {
+          "package_name": "com.example.judge_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFVM7am8quf2lwci9syasI5OLxQrjPK7Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
