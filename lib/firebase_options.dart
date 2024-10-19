@@ -51,7 +51,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyAFVM7am8quf2lwci9syasI5OLxQrjPK7Y',
-    appId: '1:1093188499260:android:756fcd403b78db3ec2d039',
+    appId: '1:1093188499260:android:4f1c132292753e19c2d039',
     messagingSenderId: '1093188499260',
     projectId: 'judge-app-f80ea',
     storageBucket: 'judge-app-f80ea.appspot.com',
@@ -59,10 +59,10 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyB5wURtSwBgdXDG_fwHJ3yorHbkowmLtgU',
-    appId: '1:1093188499260:ios:516d2bb92874b45dc2d039',
+    appId: '1:1093188499260:ios:099ca64a30c1222bc2d039',
     messagingSenderId: '1093188499260',
     projectId: 'judge-app-f80ea',
     storageBucket: 'judge-app-f80ea.appspot.com',
-    iosBundleId: 'com.example.judgeAdminApp',
+    iosBundleId: 'com.example.judgeApp',
   );
 }
