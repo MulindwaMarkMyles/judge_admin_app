@@ -18,7 +18,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _confirmPasswordController =
       TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  AuthService _auth = AuthService();
+  final AuthService _auth = AuthService();
 
   bool _passwordVisible = false;
   bool _isLoading = false; // State variable for loading

@@ -4,7 +4,7 @@ import 'package:judge_admin_app/database.dart';
 
 class Homescreen extends StatefulWidget {
   final String username;
-  Homescreen({super.key, required this.username});
+  const Homescreen({super.key, required this.username});
 
   @override
   State<Homescreen> createState() => _HomescreenState();
@@ -14,11 +14,20 @@ class _HomescreenState extends State<Homescreen> {
   List<Map<String, dynamic>> _contestants = [];
   bool _isRefreshing = false;
   final FirestoreService _fs = FirestoreService();
+  int no_of_judges = 0;
 
   @override
   void initState() {
     super.initState();
     _refreshTopContestants();
+    getJudges();
+  }
+
+  Future<void> getJudges() async {
+    int judges = await _fs.getTotalNoOfJudges();
+    setState(() {
+      no_of_judges = judges;
+    });
   }
 
   Future<void> _refreshTopContestants() async {
@@ -27,13 +36,16 @@ class _HomescreenState extends State<Homescreen> {
     });
 
     try {
+      getJudges();
       final userIds = await _fs.getAllUserDocIds();
+
       final contestants = await _fs.fetchTopContestantsForAllUsers(userIds);
 
       setState(() {
         _contestants = contestants;
       });
     } catch (e) {
+      print("Error in refreshing: $e");
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Error refreshing: $e')),
       );
@@ -65,9 +77,21 @@ class _HomescreenState extends State<Homescreen> {
         child: ListView(
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 40.0),
+              padding: const EdgeInsets.only(top: 40.0),
               child: Text(
-                "Hey, ${widget.username},\nThe Top Scorers for each category based on different judges.",
+                "Hey, ${widget.username}",
+                style: GoogleFonts.poppins(
+                  fontSize: 29.0,
+                  color: Colors.black87,
+                  fontWeight: FontWeight.w600,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20.0),
+              child: Text(
+                "\nThe Top Scorers for each category based on different judges.",
                 style: GoogleFonts.poppins(
                   fontSize: 18.0,
                   color: Colors.black87,
@@ -77,7 +101,7 @@ class _HomescreenState extends State<Homescreen> {
             ),
             const SizedBox(height: 10),
             _isRefreshing
-                ? Center(
+                ? const Center(
                     child: CircularProgressIndicator(
                       valueColor: AlwaysStoppedAnimation<Color>(Colors.amber),
                     ),
@@ -138,7 +162,7 @@ class _HomescreenState extends State<Homescreen> {
                                             ),
                                           ),
                                           subtitle: Text(
-                                            'Score: ${contestant['totalMarks']}/100',
+                                            'Score: ${((contestant['totalMarks'] / (100 * no_of_judges)) * 100).toStringAsFixed(2)} / 100',
                                             style: GoogleFonts.poppins(
                                               fontSize: 14.0,
                                             ),
@@ -150,7 +174,7 @@ class _HomescreenState extends State<Homescreen> {
                                   const SizedBox(
                                       height: 16), // Add space between tiles
                                 ])
-                          .toList(),
+                            .toList(),
                       ),
             const SizedBox(height: 20),
             Padding(
