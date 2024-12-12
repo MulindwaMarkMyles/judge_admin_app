@@ -41,26 +41,26 @@ class _SignInScreenState extends State<SignInScreen> {
 
       // Call the modified signIn function from AuthService
       String? result = await AuthService().signIn(email, password);
-
-      setState(() {
-        _isLoading = false;
-      });
-
+      
       if (result == null) {
-        // Navigate to Homescreen if login is successful
+        // Navigate to HomeScreen on successful login
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
             builder: (context) => Homescreen(username: username),
           ),
         );
-      } else {
-        // Display error message for failed login
-        setState(() {
-          _errorMessage = result;
-        });
       }
-    }
+
+      setState(() {
+        _isLoading = false;
+      });
+
+      // Display error message for failed login
+      setState(() {
+        _errorMessage = result;
+      });
+        }
   }
 
   @override
